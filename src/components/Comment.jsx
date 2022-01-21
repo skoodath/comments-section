@@ -19,16 +19,30 @@ const CommentComponent = ({ c }) => {
   const { comments, setComments } = useContext(CommentContext);
 
   const [isReply, setIsReply] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   const replyToComment = () => {
     setIsReply(!isReply);
   };
 
-  const deleteComment = () => {
-    setIsDelete(!isDelete);
+  const showDeleteConfirm = () => {
+    setShowDelete(!showDelete);
   };
 
+  const deleteComment = () => {
+    if (localStorage.getItem("comments") !== null) {
+      const localComments = JSON.parse(localStorage.getItem("comments"));
+      const filteredComments = localComments.filter(
+        (comment) => comment.id !== id
+      );
+      localStorage.setItem("comments", JSON.stringify(filteredComments));
+      setComments(filteredComments);
+    }
+  };
+
+  const cancelDelete = () => {
+    setShowDelete(!showDelete);
+  };
   const upVote = () => {
     setComments(
       comments.map((comment) =>
@@ -59,14 +73,19 @@ const CommentComponent = ({ c }) => {
         </Comments.User>
         <Comments.Content>{content}</Comments.Content>
         {currentUser.username === username && (
-          <DeleteButton deleteComment={deleteComment} />
+          <DeleteButton showDeleteConfirm={showDeleteConfirm} />
         )}
         {currentUser.username === username && <EditButton />}
         <ScoreButton score={score} upVote={upVote} downVote={downVote} />
         {currentUser.username !== username && (
           <ReplyButton replyToComment={replyToComment} isReply={isReply} />
         )}
-        {isDelete && <ConfirmDeleteComponent deleteComment={deleteComment} />}
+        {showDelete && (
+          <ConfirmDeleteComponent
+            deleteComment={deleteComment}
+            cancelDelete={cancelDelete}
+          />
+        )}
       </Comments.Wrapper>
       {isReply && (
         <FormComponent

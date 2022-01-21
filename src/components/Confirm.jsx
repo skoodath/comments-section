@@ -1,7 +1,7 @@
 import React from "react";
 import { Confirm } from "../style/components/confirm.style";
 
-const ConfirmDeleteComponent = ({ deleteComment }) => {
+const ConfirmDeleteComponent = ({ deleteComment, cancelDelete }) => {
   return (
     <Confirm.Wrapper>
       <Confirm.Background></Confirm.Background>
@@ -12,8 +12,8 @@ const ConfirmDeleteComponent = ({ deleteComment }) => {
           comment and can't be undone
         </Confirm.Message>
         <Confirm.ButtonContainer>
-          <Confirm.Cancel onClick={deleteComment}>No, Cancel</Confirm.Cancel>
-          <Confirm.Delete>Yes, Delete</Confirm.Delete>
+          <Confirm.Cancel onClick={cancelDelete}>No, Cancel</Confirm.Cancel>
+          <Confirm.Delete onClick={deleteComment}>Yes, Delete</Confirm.Delete>
         </Confirm.ButtonContainer>
       </Confirm.Inner>
     </Confirm.Wrapper>

@@ -14,15 +14,19 @@ const RepliesComponent = ({ re }) => {
   const { image, username } = user;
 
   const { currentUser, currentUserImage } = useContext(CommentContext);
-  const [isDelete, setIsDelete] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [isReply, setIsReply] = useState(false);
 
   const replyToDeepComment = () => {
     setIsReply(!isReply);
   };
 
-  const deleteComment = () => {
-    setIsDelete(!isDelete);
+  const showDeleteConfirm = () => {
+    setShowDelete(!showDelete);
+  };
+
+  const cancelDelete = () => {
+    setShowDelete(false);
   };
 
   return (
@@ -40,14 +44,14 @@ const RepliesComponent = ({ re }) => {
         </Replies.User>
         <Replies.Content>{content}</Replies.Content>
         {currentUser === username && (
-          <DeleteButton deleteComment={deleteComment} />
+          <DeleteButton showDeleteConfirm={showDeleteConfirm} />
         )}
         {currentUser === username && <EditButton />}
         <ScoreButton score={score} />
         {currentUser !== username && (
           <ReplyButton replyToComment={replyToDeepComment} isReply={isReply} />
         )}
-        {isDelete && <ConfirmDeleteComponent deleteComment={deleteComment} />}
+        {showDelete && <ConfirmDeleteComponent cancelDelete={cancelDelete} />}
       </Replies.Wrapper>
       {isReply && (
         <FormComponent image={currentUserImage.webp} username={currentUser} />
