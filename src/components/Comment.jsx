@@ -26,7 +26,7 @@ const CommentComponent = ({ c }) => {
   };
 
   const deleteComment = () => {
-    setComments(comments.filter((comment) => comment.id !== id));
+    setIsDelete(!isDelete);
   };
 
   const upVote = () => {
