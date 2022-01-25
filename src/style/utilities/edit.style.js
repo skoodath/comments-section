@@ -16,6 +16,16 @@ export const Edit = {
     right: 1rem;
     margin: 0 0 0.6rem 0;
     cursor: pointer;
+    &:hover {
+      svg {
+        path {
+          
+            fill: ${primaryColor.grayishBlue};
+            }
+    }
+    div{
+      color: ${primaryColor.grayishBlue};
+    }
   `,
   Caption: styled.div`
     color: ${primaryColor.moderateBlue};

@@ -9,6 +9,12 @@ export const Comments = {
     border-radius: 5px;
     position: relative;
   `,
+  Inner: styled.div`
+    @media ${device.desktop} {
+      width: 90%;
+      margin: 0 0 0 auto;
+    }
+  `,
   User: styled.section`
     display: flex;
     align-items: center;
@@ -34,9 +40,12 @@ export const Comments = {
     color: ${neutralColor.grayishBlue};
     line-height: 1.3;
     font-weight: 400;
+    @media ${device.desktop} {
+      margin: 1rem 0;
+    }
   `,
   ReplyWrapper: styled.section`
-    border-left: 1px solid ${neutralColor.grayishBlue};
+    border-left: 1px solid ${neutralColor.lightGray};
     padding: 0 0 0 1rem;
     @media ${device.desktop} {
       width: 95%;

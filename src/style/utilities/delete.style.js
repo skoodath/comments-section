@@ -17,9 +17,13 @@ export const Delete = {
     margin: 0 0 0.6rem 0;
     cursor: pointer;
     &:hover {
-      img {
-        fill: ${primaryColor.paleRed};
-      }
+      svg {
+        path {
+            fill: ${primaryColor.paleRed};
+          }
+    }
+    div{
+      color: ${primaryColor.paleRed};
     }
   `,
   Caption: styled.div`

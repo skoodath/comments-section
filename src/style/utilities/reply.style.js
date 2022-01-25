@@ -19,12 +19,19 @@ export const Reply = {
     @media ${device.desktop} {
       bottom: 70%;
     }
+    &:hover {
+      svg {
+        path {
+          
+            fill: ${primaryColor.grayishBlue};
+            }
+    }
+    div{
+      color: ${primaryColor.grayishBlue};
+    }
   `,
   Caption: styled.div`
-    color: ${({ isReply }) =>
-      !isReply
-        ? `${primaryColor.moderateBlue}`
-        : `${primaryColor.grayishBlue}`};
+    color: ${primaryColor.moderateBlue};
     font-weight: 700;
   `,
 };

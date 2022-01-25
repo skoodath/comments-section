@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { device, neutralColor, primaryColor } from "../variable.style";
+import { device, primaryColor } from "../variable.style";
 
 export const Header = {
   Wrapper: styled.header`
     position: fixed;
     width: 100%;
-    background-color: ${primaryColor.moderateBlue};
     top: 0;
     left: 0;
     right: 0;
@@ -17,7 +16,7 @@ export const Header = {
   `,
   Brand: styled.h1`
     font-size: 1.5rem;
-    color: ${neutralColor.white};
+    color: ${primaryColor.moderateBlue};
     @media ${device.laptop} {
       font-size: 2rem;
     }

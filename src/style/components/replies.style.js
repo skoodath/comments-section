@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { neutralColor } from "./../variable.style";
+import { device, neutralColor } from "./../variable.style";
 
 export const Replies = {
   Wrapper: styled.section`
@@ -8,6 +8,12 @@ export const Replies = {
     padding: 1rem;
     border-radius: 5px;
     position: relative;
+  `,
+  Inner: styled.div`
+    @media ${device.desktop} {
+      width: 90%;
+      margin: 0 0 0 auto;
+    }
   `,
 
   User: styled.section`
@@ -35,5 +41,8 @@ export const Replies = {
     color: ${neutralColor.grayishBlue};
     line-height: 1.3;
     font-weight: 400;
+    @media ${device.desktop} {
+      margin: 1rem 0;
+    }
   `,
 };

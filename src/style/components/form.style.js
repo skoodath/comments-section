@@ -8,6 +8,7 @@ export const Form = {
     border-radius: 5px;
     padding: 1rem;
     margin: 0 0 2rem 0;
+    min-height: 158px;
   `,
   FormEl: styled.form`
     display: block;
@@ -31,7 +32,7 @@ export const Form = {
     font-size: 0.9rem;
     display: block;
     @media ${device.desktop} {
-      width: 75%;
+      width: 76%;
       margin: 0 2rem 1rem 3rem;
     }
   `,
@@ -52,7 +53,8 @@ export const Form = {
     background-color: ${primaryColor.moderateBlue};
     color: ${neutralColor.white};
     display: inline-block;
-    width: 80px;
+    max-width: 80px;
+    min-width: 65px;
     margin: auto;
     padding: 0.7rem;
     border: none;
@@ -61,9 +63,19 @@ export const Form = {
     right: 0;
     bottom: 0;
     cursor: pointer;
+    &:hover {
+      background-color: ${primaryColor.grayishBlue};
+      color: ${primaryColor.moderateBlue};
+    }
     @media ${device.desktop} {
       bottom: 100%;
       transform: translate(-10%, 100%);
     }
+  `,
+  Error: styled.p`
+    color: ${primaryColor.softRed};
+    width: 86%;
+    margin: 0 auto;
+    text-align: left;
   `,
 };

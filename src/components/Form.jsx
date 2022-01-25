@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import CommentContext from "../context";
 import { Form } from "../style/components/form.style";
 
-const FormComponent = ({ isReply, handleSubmit }) => {
+const FormComponent = ({ isReply, handleSubmit, error }) => {
   const { newComment, handleChange, currentUser, currentUserImage } =
     useContext(CommentContext);
 
@@ -17,6 +17,7 @@ const FormComponent = ({ isReply, handleSubmit }) => {
         />
         <Form.Image src={currentUserImage.webp} alt={currentUser} />
         <Form.Button type="submit">{isReply ? "Reply" : "Send"}</Form.Button>
+        {error && <Form.Error>Comments field is empty</Form.Error>}
       </Form.FormEl>
     </Form.Wrapper>
   );

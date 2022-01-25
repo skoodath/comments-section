@@ -11,6 +11,7 @@ const LandingComponent = () => {
 
   const [comments, setComments] = useState(data.comments);
   const [newComment, setNewComment] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("comments") === null) {
@@ -26,31 +27,37 @@ const LandingComponent = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (localStorage.getItem("comments") !== null) {
-      const localComments = JSON.parse(localStorage.getItem("comments"));
-
-      const addedComments = {
-        id: Math.floor(new Date().getTime().toString()),
-        content: newComment,
-        replies: [],
-        createdAt: new Date().toLocaleString("en-us", {
-          hour: "numeric",
-          minute: "numeric",
-        }),
-        score: 0,
-        user: {
-          image: {
-            png: currentUserImage.png,
-            webp: currentUserImage.webp,
-          },
-          username: currentUser,
-        },
-      };
-      localComments.push(addedComments);
-      localStorage.setItem("comments", JSON.stringify(localComments));
-      setComments(localComments);
+    if (newComment.length <= 0) {
+      setError(true);
     }
-    setNewComment("");
+    if (newComment.length > 0) {
+      setError(false);
+      if (localStorage.getItem("comments") !== null) {
+        const localComments = JSON.parse(localStorage.getItem("comments"));
+
+        const addedComments = {
+          id: Math.floor(new Date().getTime().toString()),
+          content: newComment,
+          replies: [],
+          createdAt: new Date().toLocaleString("en-us", {
+            hour: "numeric",
+            minute: "numeric",
+          }),
+          score: 0,
+          user: {
+            image: {
+              png: currentUserImage.png,
+              webp: currentUserImage.webp,
+            },
+            username: currentUser,
+          },
+        };
+        localComments.push(addedComments);
+        localStorage.setItem("comments", JSON.stringify(localComments));
+        setComments(localComments);
+      }
+      setNewComment("");
+    }
   };
 
   return (
@@ -73,6 +80,7 @@ const LandingComponent = () => {
         <FormComponent
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          error={error}
         />
       </Landing.Wrapper>
     </CommentContext.Provider>
