@@ -5,7 +5,7 @@ export const Landing = {
     width: 100%;
     max-width: 638px;
     min-width: 320px;
-    margin: 0 auto;
+    margin: 70px auto 0;
     padding: 0 1rem;
   `,
 };

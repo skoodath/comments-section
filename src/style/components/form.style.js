@@ -60,6 +60,7 @@ export const Form = {
     position: absolute;
     right: 0;
     bottom: 0;
+    cursor: pointer;
     @media ${device.desktop} {
       bottom: 100%;
       transform: translate(-10%, 100%);

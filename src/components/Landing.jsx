@@ -6,9 +6,11 @@ import CommentComponent from "./Comment";
 import CommentContext from "../context";
 
 const LandingComponent = () => {
-  const currentUser = data.currentUser;
+  const currentUser = data.currentUser.username;
+  const currentUserImage = data.currentUser.image;
 
   const [comments, setComments] = useState(data.comments);
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("comments") === null) {
@@ -19,22 +21,58 @@ const LandingComponent = () => {
     }
   }, []);
 
+  const handleChange = (event) => {
+    setNewComment(event.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (localStorage.getItem("comments") !== null) {
+      const localComments = JSON.parse(localStorage.getItem("comments"));
+
+      const addedComments = {
+        id: Math.floor(new Date().getTime().toString()),
+        content: newComment,
+        replies: [],
+        createdAt: new Date().toLocaleString("en-us", {
+          hour: "numeric",
+          minute: "numeric",
+        }),
+        score: 0,
+        user: {
+          image: {
+            png: currentUserImage.png,
+            webp: currentUserImage.webp,
+          },
+          username: currentUser,
+        },
+      };
+      localComments.push(addedComments);
+      localStorage.setItem("comments", JSON.stringify(localComments));
+      setComments(localComments);
+    }
+    setNewComment("");
+  };
+
   return (
     <CommentContext.Provider
       value={{
-        currentUser: currentUser.username,
-        currentUserImage: currentUser.image,
+        currentUser,
+        currentUserImage,
         comments,
+        newComment,
+        setNewComment,
         setComments,
+        handleSubmit,
+        handleChange,
       }}
     >
       <Landing.Wrapper>
-        {comments.map((c) => (
-          <CommentComponent c={{ ...c }} key={c.id} />
+        {comments.map((comment) => (
+          <CommentComponent c={comment} key={comment.id} />
         ))}
         <FormComponent
-          image={currentUser.image.webp}
-          username={currentUser.username}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
         />
       </Landing.Wrapper>
     </CommentContext.Provider>

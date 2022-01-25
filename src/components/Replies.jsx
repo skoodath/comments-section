@@ -11,8 +11,6 @@ import FormComponent from "./Form";
 
 const RepliesComponent = ({ re }) => {
   const { content, createdAt, user, score } = re;
-  const { image, username } = user;
-
   const { currentUser, currentUserImage } = useContext(CommentContext);
   const [showDelete, setShowDelete] = useState(false);
   const [isReply, setIsReply] = useState(false);
@@ -29,13 +27,42 @@ const RepliesComponent = ({ re }) => {
     setShowDelete(false);
   };
 
+  /* const upVote = () => {
+    setComments(
+      comments.map((comment) =>
+        comment.id === id
+          ? {
+              ...comment,
+              replies: [
+                { ...comment.replies, score: comment.replies.score + 1 },
+              ],
+            }
+          : comment
+      )
+    );
+  };
+  const downVote = () => {
+    setComments(
+      comments.map((comment) =>
+        comment.id === id
+          ? {
+              ...comment,
+              replies: [
+                { ...comment.replies, score: comment.replies.score - 1 },
+              ],
+            }
+          : comment
+      )
+    );
+  }; */
+
   return (
     <>
       <Replies.Wrapper>
         <Replies.User>
-          <Replies.UserImage src={image.webp} alt={username} />
-          <Replies.UserName>{username}</Replies.UserName>
-          {currentUser === username && (
+          <Replies.UserImage src={user.image.webp} alt={user.username} />
+          <Replies.UserName>{user.username}</Replies.UserName>
+          {currentUser === user.username && (
             <You.Wrapper>
               <You.Text>You</You.Text>
             </You.Wrapper>
@@ -43,12 +70,13 @@ const RepliesComponent = ({ re }) => {
           <Replies.CreatedAt>{createdAt}</Replies.CreatedAt>
         </Replies.User>
         <Replies.Content>{content}</Replies.Content>
-        {currentUser === username && (
+
+        {currentUser === user.username && (
           <DeleteButton showDeleteConfirm={showDeleteConfirm} />
         )}
-        {currentUser === username && <EditButton />}
-        <ScoreButton score={score} />
-        {currentUser !== username && (
+        {currentUser === user.username && <EditButton />}
+        {currentUser !== user.username && <ScoreButton score={score} />}
+        {currentUser !== user.username && (
           <ReplyButton replyToComment={replyToDeepComment} isReply={isReply} />
         )}
         {showDelete && <ConfirmDeleteComponent cancelDelete={cancelDelete} />}

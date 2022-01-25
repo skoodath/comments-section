@@ -1,7 +1,7 @@
 import React from "react";
 import { Confirm } from "../style/components/confirm.style";
 
-const ConfirmDeleteComponent = ({ deleteComment, cancelDelete }) => {
+const ConfirmDeleteComponent = ({ handleDelete, cancelDelete }) => {
   return (
     <Confirm.Wrapper>
       <Confirm.Background></Confirm.Background>
@@ -13,7 +13,7 @@ const ConfirmDeleteComponent = ({ deleteComment, cancelDelete }) => {
         </Confirm.Message>
         <Confirm.ButtonContainer>
           <Confirm.Cancel onClick={cancelDelete}>No, Cancel</Confirm.Cancel>
-          <Confirm.Delete onClick={deleteComment}>Yes, Delete</Confirm.Delete>
+          <Confirm.Delete onClick={handleDelete}>Yes, Delete</Confirm.Delete>
         </Confirm.ButtonContainer>
       </Confirm.Inner>
     </Confirm.Wrapper>
