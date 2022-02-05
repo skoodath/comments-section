@@ -64,6 +64,7 @@ const CommentComponent = ({ c }) => {
 
   const handleReply = (e) => {
     e.preventDefault();
+    console.log(e.which);
     if (reply.length <= 0) {
       setError(true);
     } else if (reply.length > 0) {

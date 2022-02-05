@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device, primaryColor } from "../variable.style";
+import { device, neutralColor, primaryColor } from "../variable.style";
 
 export const Header = {
   Wrapper: styled.header`
@@ -13,6 +13,7 @@ export const Header = {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    background: ${neutralColor.vlightGray};
   `,
   Brand: styled.h1`
     font-size: 1.5rem;
