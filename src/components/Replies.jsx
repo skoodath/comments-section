@@ -49,38 +49,6 @@ const RepliesComponent = ({ re, cid }) => {
     setShowDelete(false);
   };
 
-  /*const upVote = () => {
-    if (localStorage.getItem("comments") !== null) {
-      const localComments = JSON.parse(localStorage.getItem("comments"));
-      let upVotes = localComments.map((comment) =>
-        comment.id === cid
-          ? {
-              ...comment,
-              replies: [
-                ...comment.replies,
-                { score: comment.replies.score + 1 },
-              ],
-            }
-          : comment
-      );
-      console.log(upVotes);
-    }
-  };
-  const downVote = () => {
-    setComments(
-      comments.map((comment) =>
-        comment.id === id
-          ? {
-              ...comment,
-              replies: [
-                { ...comment.replies, score: comment.replies.score - 1 },
-              ],
-            }
-          : comment
-      )
-    );
-  }; */
-
   return (
     <>
       <Replies.Wrapper>
