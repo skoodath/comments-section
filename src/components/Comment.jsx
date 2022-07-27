@@ -1,14 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Comments } from "../style/components/comments.style";
 import DeleteButton from "../utilities/DeleteButton";
-import EditButton from "../utilities/Edit";
-import ReplyButton from "../utilities/Reply";
-import ScoreButton from "../utilities/Score";
+import EditButton from "../utilities/EditButton";
+import ReplyButton from "../utilities/ReplyButton";
+import ScoreButton from "../utilities/ScoreButton";
 import CommentReplies from "./CommentReplies";
 import CommentContext from "../CommentContext";
 import { You } from "../style/utilities/you.style";
 import ConfirmDelete from "./ConfirmDelete";
 import { Form } from "../style/components/form.style";
+import getUniqueId from "../utilities/getuniqueid";
 
 const Comment = ({ c }) => {
   /* destructor comments object */
@@ -58,10 +59,6 @@ const Comment = ({ c }) => {
     }
     setShowDelete(false);
   };
-
-  const getUniqueId = () => {
-    return Math.floor(new Date().getTime() / 1000);
-  }
 
   const handleReply = (e) => {
     e.preventDefault();

@@ -4,6 +4,7 @@ import CommentForm from "./CommentForm";
 import { Landing } from "../style/components/landing.style";
 import Comment from "./Comment";
 import CommentContext from "../CommentContext";
+import getUniqueId from "../utilities/getuniqueid";
 
 const LandingPage = () => {
   const currentUser = data.currentUser.username;
@@ -36,7 +37,7 @@ const LandingPage = () => {
         const localComments = JSON.parse(localStorage.getItem("comments"));
 
         const addedComments = {
-          id: Math.floor(new Date().getTime().toString()),
+          id: getUniqueId(),
           content: newComment,
           replies: [],
           createdAt: new Date().toLocaleString("en-us", {

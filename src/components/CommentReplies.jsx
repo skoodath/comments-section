@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Replies } from "../style/components/replies.style";
-import ScoreButton from "../utilities/Score";
+import ScoreButton from "../utilities/ScoreButton";
 import CommentContext from "../CommentContext";
 import DeleteButton from "../utilities/DeleteButton";
-import EditButton from "../utilities/Edit";
-import ReplyButton from "../utilities/Reply";
+import EditButton from "../utilities/EditButton";
+import ReplyButton from "../utilities/ReplyButton";
 import { You } from "../style/utilities/you.style";
 import ConfirmDeleteComponent from "./ConfirmDelete";
 import CommentForm from "./CommentForm";
