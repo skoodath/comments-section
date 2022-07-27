@@ -1,16 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Replies } from "../style/components/replies.style";
 import ScoreButton from "../utilities/Score";
-import CommentContext from "../context";
-import DeleteButton from "../utilities/Delete";
+import CommentContext from "../CommentContext";
+import DeleteButton from "../utilities/DeleteButton";
 import EditButton from "../utilities/Edit";
 import ReplyButton from "../utilities/Reply";
 import { You } from "../style/utilities/you.style";
-import ConfirmDeleteComponent from "./Confirm";
-import FormComponent from "./Form";
-//import { Form } from "../style/components/form.style";
+import ConfirmDeleteComponent from "./ConfirmDelete";
+import CommentForm from "./CommentForm";
 
-const RepliesComponent = ({ re, cid }) => {
+const CommentReplies = ({ re, cid }) => {
   const { content, createdAt, user, score, id } = re;
   const { setComments, currentUser, currentUserImage } =
     useContext(CommentContext);
@@ -39,7 +38,6 @@ const RepliesComponent = ({ re, cid }) => {
         .flatMap((c) => c.replies)
         .filter((r) => r.id !== id);
 
-      //console.log(filteredComments);
       let deletedReply = localComments.map((cmt) =>
         cmt.id === cid ? { ...cmt, replies: filteredComments } : cmt
       );
@@ -82,27 +80,15 @@ const RepliesComponent = ({ re, cid }) => {
       </Replies.Wrapper>
       {isReply && (
         <>
-          <FormComponent
+          <CommentForm
             image={currentUserImage.webp}
             username={currentUser}
             isReply={isReply}
           />
-          {/* <Form.Wrapper>
-            <Form.FormEl onSubmit={handleReply}>
-              <Form.Text
-                value={reply}
-                onChange={handleChange}
-                rows={4}
-                placeholder="Reply to comment..."
-              />
-              <Form.Image src={currentUserImage.webp} alt={currentUser} />
-              <Form.Button type="submit">Reply</Form.Button>
-            </Form.FormEl>
-          </Form.Wrapper> */}
         </>
       )}
     </>
   );
 };
 
-export default RepliesComponent;
+export default CommentReplies;

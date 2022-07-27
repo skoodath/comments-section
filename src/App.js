@@ -1,13 +1,13 @@
-import HeaderComponent from "./components/Header";
-import LandingComponent from "./components/Landing";
+import HeaderSection from "./components/HeaderSection";
+import LandingPage from "./components/LandingPage";
 import GlobalStyle from "./style/global.style";
 
 const App = () => {
   return (
     <>
       <GlobalStyle />
-      <HeaderComponent />
-      <LandingComponent />
+      <HeaderSection />
+      <LandingPage />
     </>
   );
 };

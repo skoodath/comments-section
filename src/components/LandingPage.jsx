@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import data from "../data";
-import FormComponent from "./Form";
+import CommentForm from "./CommentForm";
 import { Landing } from "../style/components/landing.style";
-import CommentComponent from "./Comment";
-import CommentContext from "../context";
+import Comment from "./Comment";
+import CommentContext from "../CommentContext";
 
-const LandingComponent = () => {
+const LandingPage = () => {
   const currentUser = data.currentUser.username;
   const currentUserImage = data.currentUser.image;
 
@@ -75,9 +75,9 @@ const LandingComponent = () => {
     >
       <Landing.Wrapper>
         {comments.map((comment) => (
-          <CommentComponent c={comment} key={comment.id} />
+          <Comment c={comment} key={comment.id} />
         ))}
-        <FormComponent
+        <CommentForm
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           error={error}
@@ -87,4 +87,4 @@ const LandingComponent = () => {
   );
 };
 
-export default LandingComponent;
+export default LandingPage;

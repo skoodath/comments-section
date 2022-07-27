@@ -1,7 +1,7 @@
 import React from "react";
 import { Confirm } from "../style/components/confirm.style";
 
-const ConfirmDeleteComponent = ({ handleDelete, cancelDelete }) => {
+const ConfirmDelete = ({ handleDelete, cancelDelete }) => {
   return (
     <Confirm.Wrapper>
       <Confirm.Background></Confirm.Background>
@@ -20,4 +20,4 @@ const ConfirmDeleteComponent = ({ handleDelete, cancelDelete }) => {
   );
 };
 
-export default ConfirmDeleteComponent;
+export default ConfirmDelete;

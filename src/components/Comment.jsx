@@ -1,16 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Comments } from "../style/components/comments.style";
-import DeleteButton from "../utilities/Delete";
+import DeleteButton from "../utilities/DeleteButton";
 import EditButton from "../utilities/Edit";
 import ReplyButton from "../utilities/Reply";
 import ScoreButton from "../utilities/Score";
-import RepliesComponent from "./Replies";
-import CommentContext from "../context";
+import CommentReplies from "./CommentReplies";
+import CommentContext from "../CommentContext";
 import { You } from "../style/utilities/you.style";
-import ConfirmDeleteComponent from "./Confirm";
+import ConfirmDelete from "./ConfirmDelete";
 import { Form } from "../style/components/form.style";
 
-const CommentComponent = ({ c }) => {
+const Comment = ({ c }) => {
   /* destructor comments object */
   const { content, createdAt, user, replies, score, id } = c;
 
@@ -40,9 +40,6 @@ const CommentComponent = ({ c }) => {
   const cancelDelete = () => {
     setShowDelete(false);
   };
-  /* const confirmDelete = () => {
-    setIsDelete(true);
-  }; */
 
   const handleChange = (event) => {
     setReply(event.target.value);
@@ -62,6 +59,10 @@ const CommentComponent = ({ c }) => {
     setShowDelete(false);
   };
 
+  const getUniqueId = () => {
+    return Math.floor(new Date().getTime() / 1000);
+  }
+
   const handleReply = (e) => {
     e.preventDefault();
     if (reply.length <= 0) {
@@ -78,7 +79,7 @@ const CommentComponent = ({ c }) => {
                 replies: [
                   ...replies,
                   {
-                    id: Math.floor(new Date().getTime().toString()),
+                    id: getUniqueId(),
                     content: reply,
                     createdAt: new Date().toLocaleString("en-us", {
                       hour: "numeric",
@@ -158,7 +159,7 @@ const CommentComponent = ({ c }) => {
           <ReplyButton replyToComment={replyToComment} isReply={isReply} />
         )}
         {showDelete && (
-          <ConfirmDeleteComponent
+          <ConfirmDelete
             cancelDelete={cancelDelete}
             handleDelete={handleDelete}
           />
@@ -182,7 +183,7 @@ const CommentComponent = ({ c }) => {
       <Comments.ReplyWrapper>
         {replies &&
           replies.map((re) => (
-            <RepliesComponent
+            <CommentReplies
               key={re.id}
               re={{ ...re }}
               isReply={isReply}
@@ -194,4 +195,4 @@ const CommentComponent = ({ c }) => {
   );
 };
 
-export default CommentComponent;
+export default Comment;
